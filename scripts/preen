@@ -1,0 +1,37 @@
+#! /bin/bash
+#refactor this at some point
+
+if [[ -d "node_modules/slick-carousel" && -d "node_modules/foundation-sites" && -d "node_modules/font-awesome" ]]; then
+  if [[ ! -d "src/vendor" ]]; then
+    #copy foundation scss files
+    mkdir -p src/vendor/foundation
+    cp -r node_modules/foundation-sites/scss src/vendor/foundation/scss
+    #copy foundation js files
+    mkdir -p vendor/foundation
+    cp -r node_modules/foundation-sites/js vendor/foundation/js
+    #copy slick scss files
+    mkdir -p src/vendor/slick-carousel/scss
+    cp node_modules/slick-carousel/slick/slick.scss src/vendor/slick-carousel/scss/slick.scss
+    #copy font-awesome files
+    mkdir -p vendor/font-awesome
+    cp -r node_modules/font-awesome/css vendor/font-awesome/css
+    cp -r node_modules/font-awesome/fonts/. vendor/font-awesome/fonts
+    #space saver
+    rm -rf node_modules/foundation-sites
+    rm -rf node_modules/slick-carousel
+    rm -rf node_modules/font-awesome
+    rm -rf node_modules/jquery
+  else
+    #oops! start over
+    rm -rf vendor
+    rm -rf src/vendor
+    echo "Please re-run 'preen'"
+  fi
+else
+  #oops! start over
+  rm -rf node_modules/foundation-sites
+  rm -rf node_modules/slick-carousel
+  rm -rf node_modules/font-awesome
+  rm -rf node_modules/jquery
+  echo "Please re-run 'npm-install --production'"
+fi

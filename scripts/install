@@ -1,0 +1,9 @@
+#! /bin/bash
+
+npm link gulp-eslint
+npm link gulp-sass
+npm link gulp-autoprefixer
+npm link gulp-clean-css
+npm link gulp-rename
+npm link gulp-uglify
+npm link gulp
